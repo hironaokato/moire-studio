@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moiré Studio — 3D モアレ構造デザイナー</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <div id="view"></div>
+    <aside id="panel">
+      <h1>Moiré Studio</h1>
+      <p class="sub">3次元エッジ構造のモアレを設計し、STLで書き出す</p>
+
+      <label>テンプレート
+        <select id="template">
+          <option value="lattice3d">3D格子（ジャングルジム）</option>
+          <option value="plane2d">2D平面グリッド</option>
+          <option value="curved">曲面グリッド（円筒）</option>
+          <option value="radial">放射状（同心リング）</option>
+        </select>
+      </label>
+
+      <label>分割数 <span id="gridVal"></span>
+        <input id="grid" type="range" min="3" max="14" step="1" value="7" />
+      </label>
+      <label>エッジ太さ(mm) <span id="radVal"></span>
+        <input id="radius" type="range" min="0.4" max="3" step="0.1" value="1.2" />
+      </label>
+      <label>第2層 回転(°) <span id="rotVal"></span>
+        <input id="rot" type="range" min="0" max="45" step="0.5" value="7" />
+      </label>
+      <label>第2層 ずらし <span id="offVal"></span>
+        <input id="off" type="range" min="0" max="0.5" step="0.01" value="0.06" />
+      </label>
+      <label>実寸サイズ(cm) <span id="sizeVal"></span>
+        <input id="size" type="range" min="5" max="40" step="1" value="20" />
+      </label>
+
+      <div class="row">
+        <button id="spin" class="ghost">自動回転 ON/OFF</button>
+        <button id="reset" class="ghost">視点リセット</button>
+      </div>
+      <button id="export" class="primary">STLで書き出す（20cm実寸）</button>
+
+      <p class="meta" id="meta"></p>
+      <p class="hint">ドラッグで回転 / ホイールでズーム / 右ドラッグで平行移動</p>
+    </aside>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
